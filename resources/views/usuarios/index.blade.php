@@ -22,39 +22,20 @@
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Perfil</th>
-                            <th>Departamento</th>
+                            <!--<th>Departamento</th>
                             <th>Servicios</th>
                             <th>Pagos</th>
-                            <th>Fotos</th>
+                            <th>Fotos</th>-->
                             <th>Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($usuarios as $usuario)
                             <tr>
-                                <td>{{ $usuario->name }}</td>
+                                <td>{{ $usuario->nombre }}</td>
                                 <td>{{ $usuario->email }}</td>
                                 <td>{{ optional($usuario->perfil)->nombre }}</td>
-                                <td>
-                                    @foreach($usuario->departamentos as $departamento)
-                                        {{ $departamento->nombre }}<br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach($usuario->servicios as $servicio)
-                                        {{ $servicio->nombre }}<br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach($usuario->pagos as $pago)
-                                        {{ $pago->monto }} - {{ $pago->pais->nombre }}<br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach($usuario->fotos as $foto)
-                                        {{ $foto->nombre }}<br>
-                                    @endforeach
-                                </td>
+
                                 <td>
                                     <a href="{{ route('usuarios.show', $usuario) }}" class="btn btn-info btn-sm">{{ __('Ver') }}</a>
                                     <a href="{{ route('usuarios.edit', $usuario) }}" class="btn btn-warning btn-sm">{{ __('Editar') }}</a>

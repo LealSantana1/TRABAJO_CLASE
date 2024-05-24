@@ -54,14 +54,18 @@
         <div class="sidebar-heading">
             {{ __('Settings') }}
         </div>
-         <!-- Nav Item - Usuarios -->
-
-        <!--<li class="nav-item {{ Nav::isRoute('usuarios.index') }}">
-           <a class="nav-link" href="{{ route('usuarios.index') }}">
-                <i class="fas fa-fw fa-users"></i>
-                <span>{{ __('Usuario') }}</span>
+            <!-- Usuarios -->
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">
+                    {{ __('CRUD') }}
+                        </div>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ route('usuarios.index') }}">
+             <i class="fas fa-fw fa-users"></i>
+                 <span>{{ __('Usuarios') }}</span>
             </a>
-        </li> -->
+                 </li>
+
 
         <!-- Nav Item - Profile -->
         <li class="nav-item {{ Nav::isRoute('profile') }}">

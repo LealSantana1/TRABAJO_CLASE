@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
-use App\Models\Perfil;
 use App\Models\Pais;
+use App\Models\Perfil;
 
 class UsuarioController extends Controller
 {
@@ -22,10 +22,32 @@ class UsuarioController extends Controller
         return view('usuarios.create', compact('paises'));
     }
 
+    //public function store(Request $request)
+    //{
+    //    $usuario = Usuario::create($request->all());
+    //    $usuario->perfil()->create($request->only('bio'));
+    //    return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente');
+    //}
+
     public function store(Request $request)
     {
-        $usuario = Usuario::create($request->all());
-        $usuario->perfil()->create($request->only('bio'));
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'email' => 'required|email|unique:usuarios',
+            'pais_id' => 'required|exists:paises,id',
+        ]);
+
+        $usuario = Usuario::create([
+            'nombre' => $request->input('nombre'),
+            'email' => $request->input('email'),
+            'pais_id' => $request->input('pais_id'),
+        ]);
+
+        // Si el campo 'bio' es opcional, puedes verificar su existencia antes de crearlo
+        if ($request->has('bio')) {
+            $usuario->perfil()->create(['bio' => $request->input('bio')]);
+        }
+
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente');
     }
 
@@ -38,7 +60,8 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $usuario = Usuario::findOrFail($id);
-        return view('usuarios.edit', compact('usuario'));
+        $paises = Pais::all();
+        return view('usuarios.edit', compact('usuario', 'paises'));
     }
 
     public function update(Request $request, $id)

@@ -27,13 +27,16 @@
             </div>
             <div class="form-group">
                 <label for="pais">{{ __('País') }}</label>
-                <select class="form-control" id="pais" name="pais" required>
+                <select class="form-control" id="pais" name="pais_id" required>
                     @foreach($paises as $pais)
                         <option value="{{ $pais->id }}" {{ $usuario->pais_id == $pais->id ? 'selected' : '' }}>{{ $pais->nombre }}</option>
                     @endforeach
                 </select>
             </div>
-            <!-- Otros campos y botones -->
+            <div class="form-group">
+                <label for="bio">{{ __('Biografía') }}</label>
+                <textarea class="form-control" id="bio" name="bio">{{ old('bio', $usuario->perfil->bio) }}</textarea>
+            </div>
             <button type="submit" class="btn btn-primary">{{ __('Guardar Cambios') }}</button>
         </form>
     </div>

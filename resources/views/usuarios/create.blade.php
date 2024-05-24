@@ -6,31 +6,28 @@
 
         <div class="card shadow mb-4">
             <div class="card-body">
-                <form method="POST" action="{{ route('usuarios.store') }}">
+                <form action="{{ route('usuarios.store') }}" method="POST">
                     @csrf
-
                     <div class="form-group">
-                        <label for="name">{{ __('Nombre') }}</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="nombre">{{ __('Nombre') }}</label>
+                        <input type="text" name="nombre" class="form-control" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="email">{{ __('Email') }}</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <label for="email">{{ __('Correo Electrónico') }}</label>
+                        <input type="email" name="email" class="form-control" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="country">{{ __('País') }}</label>
-                        <select class="form-control" id="country" name="country_id" required>
-                            <option value="" disabled selected>{{ __('Seleccione un país') }}</option>
-                            @foreach ($paises as $pais)
+                        <label for="pais_id">{{ __('País') }}</label>
+                        <select name="pais_id" class="form-control" required>
+                            @foreach($paises as $pais)
                                 <option value="{{ $pais->id }}">{{ $pais->nombre }}</option>
                             @endforeach
                         </select>
                     </div>
-
-                    <!-- Agregar aquí los campos necesarios para el Perfil, Departamentos, Servicios, Pagos y Fotos -->
-
+                    <div class="form-group">
+                        <label for="bio">{{ __('Biografía') }}</label>
+                        <textarea name="bio" class="form-control" required></textarea>
+                    </div>
                     <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
                 </form>
             </div>

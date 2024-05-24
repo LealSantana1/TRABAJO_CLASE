@@ -40,6 +40,7 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+Route::resource('usuarios', UsuarioController::class);
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('usuarios.create');
 Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
@@ -48,3 +49,4 @@ Route::get('/usuarios/{usuario}/edit', [UsuarioController::class, 'edit'])->name
 Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
 Route::patch('/usuarios{id}','UsuarioController@update');
 Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+Route::resource('usuarios', UsuarioController::class);
